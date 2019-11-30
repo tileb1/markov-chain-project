@@ -28,14 +28,24 @@ P2 = mean(P2_time, 3);
 
 save('P_hat_chain_1.mat','P1');
 save('P_hat_chain_2.mat','P2');
-%%
+%% f) TODO
 % Plot PI over time
-count_s = getEstimationPI(realization, k);
-plot(1:TIME, count_s);
-
+time = 200;
+nb_chain = 10000;
+PI1_time = getEstimationPI(chain_1(nb_chain, time, pi0), k);
+PI4_time = getEstimationPI(chain_4(nb_chain, time, pi0), k);
 %%
-% Compute variance of each element
+% Compute std for each state
 time_span = 50;
-cut = count_s(end-time_span:end, :);
-std_ = std(cut)
-mean_ = mean(cut, 1)
+cut1 = PI1_time(end-time_span:end, :);
+cut4 = PI4_time(end-time_span:end, :);
+
+max_std1 = max(std(cut1, 1)/length(cut1))
+max_std4 = max(std(cut2, 1)/length(cut2))
+
+%% g)
+
+%% h)
+[~, D, W] = eig(P1);
+pi_stat = (W(:, 1) / sum(W(:, 1)))';
+bar(pi_stat);
