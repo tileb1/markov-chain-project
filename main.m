@@ -15,3 +15,10 @@ plot(2:TIME, reshape(count_pij(:, :, :), [k*k, TIME-1]))
 % Plot PI over time
 count_s = getEstimationPI(realization, k);
 plot(1:TIME, count_s);
+
+%%
+% Compute variance of each element
+time_span = 10;
+cut = count_s(end-time_span:end, :);
+var_ = var(cut);
+mean_ = sum(cut) / length(cut);
