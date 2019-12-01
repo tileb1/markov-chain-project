@@ -61,7 +61,7 @@ bar(PI_est_1)
 bar(PI_est_4)
 %% g)
 % chain 1
-nb_chain = 100; % set to 1000000 for real plot
+nb_chain = 1000000; % set to 1000000 for real plot
 diff_TV_1 = 0.5 * vecnorm(res1 - PI_est_1, 1, 2);
 diff_TV_1_1 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 1), k) - PI_est_1, 1, 2);
 diff_TV_1_2 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 2), k) - PI_est_1, 1, 2);
