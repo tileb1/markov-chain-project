@@ -83,3 +83,4 @@ plot([diff_TV_4_1, diff_TV_4_2, diff_TV_4_3, diff_TV_4_4, diff_TV_4_5, diff_TV_4
 [~, D, W] = eig(P1);
 pi_stat = (W(:, 1) / sum(W(:, 1)))';
 bar(pi_stat);
+
