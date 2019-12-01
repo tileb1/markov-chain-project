@@ -49,3 +49,4 @@ max_std4 = max(std(cut2, 1)/length(cut2))
 [~, D, W] = eig(P1);
 pi_stat = (W(:, 1) / sum(W(:, 1)))';
 bar(pi_stat);
+
