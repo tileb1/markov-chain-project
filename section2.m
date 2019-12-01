@@ -24,15 +24,18 @@ PI1_lim
 %% b2)
 totvar = zeros(1,200);
 Time = 200;
-N_chain = 100000;
+N_chain = 100;
 for i = 1:3
     figure
-    title("pi_a " + i)
-    for x0 = 1
+    hold off
+    for x0 = 1:5
         PI = getEstimationPI(MP_chain_2(N_chain, Time, pi_a(i,:), x0), 5);
         A = abs(PI-pi_a(i,:));
         A = 0.5* sum(A, 2);
         plot(transpose(A), 'DisplayName', "intial state "+x0)
+        lgd = legend;
+        hold on
     end
+    title("pi_a " + i)
 end
 
