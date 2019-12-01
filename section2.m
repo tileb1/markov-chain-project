@@ -24,7 +24,7 @@ PI1_lim
 %% b2)
 totvar = zeros(1,200);
 Time = 200;
-N_chain = 100;
+N_chain = 100000;
 for i = 1:3
     figure
     hold off
