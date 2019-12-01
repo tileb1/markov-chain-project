@@ -37,37 +37,39 @@ PI4_time = getEstimationPI(chain_4(nb_chain, time, pi0), k);
 %%
 % Compute limiting distribution
 nb_chain = 1500000;
-nb_split = 20;
+nb_split = 100;
 
 % Chain 1
-total = chain_1(nb_chain, time, pi0);
-bootstrappedPI1 = getEstimationPI(reshape(total(end, :), [nb_split, nb_chain / nb_split]), k);
+res1 = chain_1(nb_chain, time, pi0);
+bootstrappedPI1 = getEstimationPI(reshape(res1(end, :), [nb_split, nb_chain / nb_split]), k);
 PI_est_1 = mean(bootstrappedPI1, 1)
 std(bootstrappedPI1, 1) / sqrt(nb_split)
 
 % Chain 4
-total = chain_4(nb_chain, time, pi0);
-bootstrappedPI4 = getEstimationPI(reshape(total(end, :), [nb_split, nb_chain / nb_split]), k);
+res4 = chain_4(nb_chain, time, pi0);
+bootstrappedPI4 = getEstimationPI(reshape(res4(end, :), [nb_split, nb_chain / nb_split]), k);
 PI_est_4 = mean(bootstrappedPI4, 1)
 std(bootstrappedPI4, 1) / sqrt(nb_split)
 %%
 save('pi_hat_chain_1.mat','PI_est_1');
 save('pi_hat_chain_4.mat','PI_est_4');
 %%
+
+%%
 bar(PI_est_1)
 %%
 bar(PI_est_4)
 %% g)
 % chain 1
-nb_chain = 200000; % set to 1000000 for real plot
-diff_TV_1 = 0.5 * vecnorm(PI1_time - PI_est_1, 1, 2);
+nb_chain = 100; % set to 1000000 for real plot
+diff_TV_1 = 0.5 * vecnorm(res1 - PI_est_1, 1, 2);
 diff_TV_1_1 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 1), k) - PI_est_1, 1, 2);
 diff_TV_1_2 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 2), k) - PI_est_1, 1, 2);
 diff_TV_1_3 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 3), k) - PI_est_1, 1, 2);
 diff_TV_1_4 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 4), k) - PI_est_1, 1, 2);
 diff_TV_1_5 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 5), k) - PI_est_1, 1, 2);
 %% chain 4
-diff_TV_4 = 0.5 * vecnorm(PI4_time - PI_est_4, 1, 2);
+diff_TV_4 = 0.5 * vecnorm(res4 - PI_est_4, 1, 2);
 diff_TV_4_1 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, 1), k) - PI_est_4, 1, 2);
 diff_TV_4_2 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, 2), k) - PI_est_4, 1, 2);
 diff_TV_4_3 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, 3), k) - PI_est_4, 1, 2);
