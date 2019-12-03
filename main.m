@@ -36,7 +36,7 @@ PI1_time = getEstimationPI(chain_1(nb_chain, time, pi0), k);
 PI4_time = getEstimationPI(chain_4(nb_chain, time, pi0), k);
 %%
 % Compute limiting distribution
-nb_chain = 1500000;
+nb_chain = 500; % set 1 000 000
 nb_split = 100;
 
 % Chain 1
@@ -61,15 +61,14 @@ bar(PI_est_1)
 bar(PI_est_4)
 %% g)
 % chain 1
-nb_chain = 1000000; % set to 1000000 for real plot
-diff_TV_1 = 0.5 * vecnorm(res1 - PI_est_1, 1, 2);
+diff_TV_1 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, pi0), k) - PI_est_1, 1, 2);
 diff_TV_1_1 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 1), k) - PI_est_1, 1, 2);
 diff_TV_1_2 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 2), k) - PI_est_1, 1, 2);
 diff_TV_1_3 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 3), k) - PI_est_1, 1, 2);
 diff_TV_1_4 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 4), k) - PI_est_1, 1, 2);
 diff_TV_1_5 = 0.5 * vecnorm(getEstimationPI(chain_1(nb_chain, time, 5), k) - PI_est_1, 1, 2);
 %% chain 4
-diff_TV_4 = 0.5 * vecnorm(res4 - PI_est_4, 1, 2);
+diff_TV_4 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, pi0), k) - PI_est_4, 1, 2);
 diff_TV_4_1 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, 1), k) - PI_est_4, 1, 2);
 diff_TV_4_2 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, 2), k) - PI_est_4, 1, 2);
 diff_TV_4_3 = 0.5 * vecnorm(getEstimationPI(chain_4(nb_chain, time, 3), k) - PI_est_4, 1, 2);
