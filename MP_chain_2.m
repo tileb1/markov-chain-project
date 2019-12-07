@@ -1,6 +1,8 @@
 function X = MP_chain_2(N_chain, Time, pi_a, x0)
+
 %Returns a N_chain realisations of the modified version of chain 2 with
 %length Time and initial state x0
+
     load('P_hat_chain_2.mat', 'P2');
     X = zeros(Time, N_chain);
     X(1,:) = chain_2(N_chain,1,x0);

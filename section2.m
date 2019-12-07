@@ -13,10 +13,11 @@ PI3_lim = zeros(5,5);
 Time = 200;
 N_chain = 100000;
 for x0 = 1:5
-    PI = getEstimationPI(MP_chain_2(N_chain, Time, pi_a3, x0), 5);
-    figure
+    PI = getEstimationPI(MP_chain_1(N_chain, Time, pi_a(3,:), x0), 5);
     plot(PI)
-    PI1_lim(x0,:) = mean(PI(150:200, :), 1);
+    title("distribution of chain 1 and pi_a 2")
+    PI1_lim(x0,:) = mean(PI(190:200, :), 1);
+    hold on
 end
 PI1_lim
 
@@ -32,7 +33,7 @@ for i = 1:3
         PI = getEstimationPI(MP_chain_2(N_chain, Time, pi_a(i,:), x0), 5);
         A = abs(PI-pi_a(i,:));
         A = 0.5* sum(A, 2);
-        plot(transpose(A), 'DisplayName', "intial state "+x0)
+        plot(transpose(A))
         lgd = legend;
         hold on
     end
